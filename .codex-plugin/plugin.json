@@ -1,0 +1,28 @@
+{
+  "name": "personal-skill-lib",
+  "version": "0.1.0",
+  "description": "Public-safe personal digital-life management skills with explicit authority, provenance, and hmmm boundaries.",
+  "author": {
+    "name": "Erin Spencer"
+  },
+  "repository": "https://github.com/erinepshovel-code/skill-lib",
+  "keywords": [
+    "agent-skills",
+    "personal-ops",
+    "digital-life",
+    "provenance"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Personal Skill Library",
+    "shortDescription": "Manage personal digital operations without flattening state or authority.",
+    "longDescription": "A public-safe skill bundle for communications, calendar, files, finances, accounts, social media, devices, administration, personal GitHub, automations, and digital continuity. Personal state and secrets remain outside the repository.",
+    "developerName": "Erin Spencer",
+    "category": "Productivity",
+    "capabilities": [
+      "Read",
+      "Write"
+    ],
+    "defaultPrompt": "Give me a personal digital-life SITREP and preserve unresolved state as hmmm."
+  }
+}

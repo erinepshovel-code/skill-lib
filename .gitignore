@@ -1,0 +1,14 @@
+.env
+.env.*
+*.key
+*.pem
+*.p12
+*.pfx
+*.token
+*.secret
+secrets/
+credentials/
+recovery-codes/
+exports/private/
+.DS_Store
+__pycache__/

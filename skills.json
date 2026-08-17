@@ -1,0 +1,79 @@
+{
+  "version": 1,
+  "repo": "erinepshovel-code/skill-lib",
+  "install_path": ".agents/skills/<skill-name>/",
+  "skills": [
+    {
+      "name": "personal-ops",
+      "path": "personal-ops/SKILL.md",
+      "kind": "procedural",
+      "description": "Orchestrate personal digital-life work that spans two or more domains, resolve authority and current state first, then route the smallest sufficient actions without silently crossing permission boundaries."
+    },
+    {
+      "name": "communications",
+      "path": "communications/SKILL.md",
+      "kind": "procedural",
+      "description": "Manage personal Gmail and contacts: search/read messages, triage action, resolve recipients, prepare/send replies, and track follow-up while preserving draft/sent state."
+    },
+    {
+      "name": "calendar",
+      "path": "calendar/SKILL.md",
+      "kind": "procedural",
+      "description": "Manage personal calendar events, availability, deadlines, reminders, recurring obligations, invitations, and conflicts using current calendar state."
+    },
+    {
+      "name": "files",
+      "path": "files/SKILL.md",
+      "kind": "procedural",
+      "description": "Manage personal files across ChatGPT Library and Google Drive: retrieval, custody, naming, provenance, duplicates, organization, and safe lifecycle operations."
+    },
+    {
+      "name": "finances",
+      "path": "finances/SKILL.md",
+      "kind": "procedural",
+      "description": "Manage and analyze personal financial data: linked-account coverage, transactions, cash flow, bills, subscriptions, liabilities, holdings, and account-sync state without inventing missing coverage."
+    },
+    {
+      "name": "accounts",
+      "path": "accounts/SKILL.md",
+      "kind": "procedural",
+      "description": "Manage digital account lifecycle: inventory, subscription state, authentication and recovery readiness, permissions, reconnection, cancellation, and closure boundaries without storing secrets."
+    },
+    {
+      "name": "social-media",
+      "path": "social-media/SKILL.md",
+      "kind": "procedural",
+      "description": "Manage personal social-media publishing and archive: topic inventory, exact post text, draft versus published state, provenance, cross-platform reuse, and recovery of incomplete history."
+    },
+    {
+      "name": "devices",
+      "path": "devices/SKILL.md",
+      "kind": "procedural",
+      "description": "Manage personal Android/Termux/device hygiene: storage, apps, permissions, updates, backups, non-destructive debloat, device-access boundaries, and recovery readiness."
+    },
+    {
+      "name": "personal-admin",
+      "path": "personal-admin/SKILL.md",
+      "kind": "procedural",
+      "description": "Manage personal administrative obligations such as taxes, benefits, insurance, legal/civic paperwork, official deadlines, receipts, evidence packets, and submission state."
+    },
+    {
+      "name": "personal-github",
+      "path": "personal-github/SKILL.md",
+      "kind": "procedural",
+      "description": "Manage personal GitHub repositories, issues, pull requests, profile surfaces, publication state, and strict separation from organization-owned authority and canon."
+    },
+    {
+      "name": "automation",
+      "path": "automation/SKILL.md",
+      "kind": "procedural",
+      "description": "Manage personal reminders, recurring scans, scheduled briefings, condition watches, and automation lifecycle while preventing duplicate or stale tasks."
+    },
+    {
+      "name": "digital-continuity",
+      "path": "digital-continuity/SKILL.md",
+      "kind": "procedural",
+      "description": "Manage backups, exports, migration, recovery paths, data survivability, and failure-safe access to important personal digital state without centralizing secrets."
+    }
+  ]
+}
