@@ -43,7 +43,7 @@
       "name": "social-media",
       "path": "social-media/SKILL.md",
       "kind": "procedural",
-      "description": "Manage personal social-media publishing and archive: topic inventory, exact post text, draft versus published state, provenance, cross-platform reuse, and recovery of incomplete history."
+      "description": "Maintain the indexed personal social-media corpus: exact post text and provenance, stable post IDs, draft versus published state, SQLite/FTS and synchronized exports, current platform character/format/tier constraints, cross-platform variants, and incomplete-history recovery."
     },
     {
       "name": "devices",
