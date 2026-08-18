@@ -1,0 +1,100 @@
+{
+  "schema_version": 1,
+  "purpose": "Public-safe contract for locating, updating, validating, and exporting the user's private/current social-media post index without committing the managed corpus to this repository.",
+  "known_artifacts": {
+    "spreadsheet": "social_media_post_index.xlsx",
+    "csv_export": "social_media_post_index.csv",
+    "sqlite": "runtime-discovered; full long-form bodies and FTS are expected when the SQLite artifact is available",
+    "fts_table": "posts_fts"
+  },
+  "source_selection": [
+    "Locate the current index artifacts from the user's connected file/library sources before editing.",
+    "Prefer the richest current writable source; do not assume CSV is authoritative merely because it is easy to parse.",
+    "When SQLite is available, preserve full long-form bodies there and rebuild/verify posts_fts.",
+    "Keep CSV and XLSX as synchronized exports/views of the same indexed corpus, not competing authorities.",
+    "If artifact freshness conflicts or the SQLite source cannot be located, stop promotion of uncertain state and record hmmm."
+  ],
+  "post_fields": [
+    "post_id",
+    "date",
+    "platform",
+    "format",
+    "status",
+    "authorship",
+    "authorship_confidence",
+    "publication_evidence",
+    "topic_ids",
+    "topics",
+    "title",
+    "body_recovery",
+    "char_count",
+    "body",
+    "source_kind",
+    "source_locator",
+    "notes"
+  ],
+  "status_values": [
+    "confirmed_posted",
+    "publication_ready",
+    "publication_ready_partial",
+    "draft",
+    "superseded_draft"
+  ],
+  "body_recovery_values": [
+    "exact_file",
+    "exact_from_chat",
+    "exact_visible",
+    "partial",
+    "summary-only"
+  ],
+  "id_rule": {
+    "pattern": "P####",
+    "allocation": "monotonic next unused numeric ID after deduplication",
+    "never": [
+      "renumber existing rows",
+      "reuse deleted or superseded IDs",
+      "assign a new ID to a cross-platform variant without linking its source in notes/source metadata"
+    ]
+  },
+  "scope": {
+    "include": "user-authored public social content and publication artifacts",
+    "exclude": [
+      "other people's posts",
+      "private DMs",
+      "unattributable screenshots presented as user-authored content"
+    ],
+    "unresolved": "Keep inspected-but-unattributable candidates outside the user corpus with explicit unresolved state."
+  },
+  "character_count": {
+    "stored_field": "char_count",
+    "rule": "Preserve the exact/source-declared count when provenance supplies one; otherwise calculate from the stored body and record any platform-specific effective count separately in notes or runtime validation rather than silently changing historical semantics.",
+    "publishing_gate": "Before calling a draft publishable, apply the current platform/form/tier rule from platform_rules.json. Near a hard limit, validate with the live composer because platform counting can differ from simple string length."
+  },
+  "append_workflow": [
+    "retrieve current index and platform rules",
+    "recover exact candidate text and provenance",
+    "establish user authorship or exclude",
+    "deduplicate by post_id, source locator, exact body, and materially equivalent recovered artifact",
+    "classify publication/recovery status without promotion by inference",
+    "allocate stable post_id only after deduplication",
+    "apply topic taxonomy and source metadata",
+    "calculate character metadata and platform fit",
+    "write the authoritative index",
+    "rebuild/verify posts_fts when SQLite is available",
+    "regenerate synchronized CSV/XLSX exports",
+    "read back the new row by post_id and search terms"
+  ],
+  "validation": [
+    "confirmed_posted requires visible or platform-source evidence",
+    "exact text requires exact source text",
+    "publication_ready is never promoted to confirmed_posted from absence of contrary evidence",
+    "the appended row is retrievable by post_id",
+    "the appended row is discoverable through FTS when SQLite/FTS is available",
+    "exports preserve the same post_id, status, provenance, and body recovery state",
+    "unresolved source or publication state remains hmmm"
+  ],
+  "hmmm": [
+    "The exact current Library identity/path of the SQLite database is runtime state and must be discovered rather than committed here.",
+    "A future schema migration may add explicit platform_count/platform_limit fields; do not mutate the existing corpus schema merely to anticipate that change."
+  ]
+}
