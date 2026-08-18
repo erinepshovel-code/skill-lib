@@ -13,12 +13,12 @@ Do not load for private DMs unless the user is explicitly managing private commu
 
 ## Sources of truth
 1. Current platform-visible post/account state, direct platform links/exports, and exact screenshots when publication state is at issue.
-2. The current user-owned social-media index retrieved from connected files/Library. Known exports are `social_media_post_index.xlsx` and `social_media_post_index.csv`; when the SQLite source is available it carries full long-form bodies and `posts_fts` full-text search.
+2. The current user-owned social-media index retrieved from ChatGPT Library/connected files. Library is the preferred persistent home for the working corpus when available. Known exports are `social_media_post_index.xlsx` and `social_media_post_index.csv`; when the SQLite source is available it carries full long-form bodies and `posts_fts` full-text search.
 3. `social-media/index_schema.json` for the public-safe update contract and field/status semantics.
 4. `social-media/platform_rules.json` for timestamped public platform constraints. It is a cache, not canon: reverify stale or contradicted rules against the current platform UI and official documentation.
 5. Exact publication artifacts, chat-history drafts, user-provided links, and source documents from which a post was derived.
 
-The repository contains the procedure/schema/rule cache, not the managed personal corpus.
+The public GitHub repository contains procedure, schema, validation logic, and platform-rule cache; it does not contain the managed personal corpus. Library may hold private non-secret working data under `PERSONAL_BOUNDARIES.md`.
 
 ## Workflow
 1. Retrieve the current index before making corpus claims or appending anything. Resolve which artifact is the richest current writable source; do not let an older CSV overwrite newer SQLite/XLSX state.
@@ -29,7 +29,7 @@ The repository contains the procedure/schema/rule cache, not the managed persona
 6. Allocate the next unused monotonic `P####` only after deduplication. Never renumber or recycle an existing ID.
 7. Preserve the index fields and semantics in `index_schema.json`: date, platform, format, status, authorship/confidence, publication evidence, topic IDs/topics, title, recovery state, character count, body, source kind/locator, and notes.
 8. Preserve exact text when recoverable; never rewrite a recovered post while calling it exact. Preserve source-declared character counts when available. For a publishing decision, also calculate current platform fit using the platform/form/tier rule; near a hard limit, validate in the live composer.
-9. Write the authoritative index, then rebuild/verify `posts_fts` when SQLite is available and regenerate synchronized CSV/XLSX exports. Long bodies may remain in SQLite while spreadsheet views chunk them; do not truncate the authoritative body.
+9. Write the authoritative Library index, then rebuild/verify `posts_fts` when SQLite is available and regenerate synchronized CSV/XLSX exports. Long bodies may remain in SQLite while spreadsheet views chunk them; do not truncate the authoritative body.
 10. Read the new/changed record back by `post_id` and search terms. A write is incomplete until provenance, status, and retrieval survive the round trip.
 
 ## Platform constraint discipline
@@ -40,7 +40,7 @@ The repository contains the procedure/schema/rule cache, not the managed persona
 - Do not assume simple Unicode string length always equals a platform's effective counter.
 
 ## Boundaries
-Publication-ready is not published. A screenshot of a feed is not proof the visible post is the user's. Do not infer authorship from topic similarity. Do not store other people's posts merely because they prompted a reply. Do not promote partial recovery to exact text. Do not silently migrate the corpus schema because a new platform exposes different metadata. Do not commit private corpus bodies or changing personal account state to this public repository.
+Publication-ready is not published. A screenshot of a feed is not proof the visible post is the user's. Do not infer authorship from topic similarity. Do not store other people's posts merely because they prompted a reply. Do not promote partial recovery to exact text. Do not silently migrate the corpus schema because a new platform exposes different metadata. Do not commit private corpus bodies or changing personal account state to this public repository. Do not put passwords, API keys, recovery material, authentication exports, or equivalent secrets into the Library corpus; Library is working storage, not secret storage.
 
 ## Output
 For an index update, report: `post_id / platform / format / status / recovery / character fit / source evidence / index write / FTS-export verification / hmmm`.
