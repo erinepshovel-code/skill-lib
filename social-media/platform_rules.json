@@ -1,0 +1,114 @@
+{
+  "schema_version": 1,
+  "checked_at": "2026-08-18T05:07:00Z",
+  "stale_after_days": 30,
+  "scope": "Platforms currently represented in the personal social-media post index. Add another platform only when the corpus or an active publishing task requires it.",
+  "authority": {
+    "order": [
+      "current platform UI/account state",
+      "official platform help/documentation",
+      "timestamped observation",
+      "hmmm"
+    ],
+    "rule": "If the current client contradicts this cache, the current client wins. Reverify and update this file rather than forcing stale metadata. Account tier/eligibility is runtime personal state and must not be committed here."
+  },
+  "platforms": {
+    "X": {
+      "checked_at": "2026-08-18T05:07:00Z",
+      "sources": [
+        {
+          "kind": "official_help",
+          "url": "https://help.x.com/en/using-x/how-to-post"
+        },
+        {
+          "kind": "official_help",
+          "url": "https://help.x.com/en/using-x/x-premium"
+        },
+        {
+          "kind": "official_help",
+          "url": "https://help.x.com/en/using-x/how-to-post-a-link"
+        }
+      ],
+      "formats": {
+        "standard_post": {
+          "hard_character_limit": 280,
+          "eligibility": "all accounts"
+        },
+        "long_post": {
+          "hard_character_limit": 25000,
+          "eligibility": "Premium subscribers",
+          "allowed_contexts": [
+            "original",
+            "quote",
+            "reply"
+          ],
+          "scheduling": false,
+          "rich_text": [
+            "bold",
+            "italic"
+          ]
+        }
+      },
+      "counting": {
+        "url_effective_characters": 23,
+        "rule": "Every posted URL is wrapped by t.co and counts as 23 characters regardless of original URL length. Use the platform composer when exact weighted counting is material."
+      },
+      "media": {
+        "max_items_per_post": 4,
+        "supported_summary": "photos, GIF, and/or video subject to current client rules"
+      },
+      "editing": {
+        "premium_edit_window_minutes": 60,
+        "scope_summary": "Premium edit applies to original posts and quotes; reverify before relying on it."
+      }
+    },
+    "LinkedIn": {
+      "checked_at": "2026-08-18T05:07:00Z",
+      "sources": [
+        {
+          "kind": "official_help",
+          "url": "https://www.linkedin.com/help/linkedin/answer/a528176"
+        },
+        {
+          "kind": "official_help",
+          "url": "https://www.linkedin.com/help/linkedin/answer/a522483"
+        },
+        {
+          "kind": "official_help",
+          "url": "https://www.linkedin.com/help/linkedin/answer/a523384"
+        }
+      ],
+      "formats": {
+        "feed_post": {
+          "hard_character_limit": 3000,
+          "scheduling": true
+        },
+        "article": {
+          "hard_character_limit": 125000
+        },
+        "comment_reply": {
+          "hard_character_limit": 1250,
+          "confidence": "observed",
+          "evidence": "Current LinkedIn client behavior and LinkedIn-hosted public examples support a 1,250-character ceiling; current official general-comment help does not state the numeric limit.",
+          "official_numeric_source": "hmmm"
+        }
+      },
+      "post_controls": {
+        "visibility": [
+          "Anyone",
+          "Connections only",
+          "Group"
+        ],
+        "comment_control": [
+          "Anyone",
+          "Connections only",
+          "Off"
+        ]
+      }
+    }
+  },
+  "hmmm": [
+    "LinkedIn's current official general-comment help page does not expose a numeric comment/reply limit; 1,250 is retained as an observed current constraint and must yield to the live composer if it changes.",
+    "Platform counting semantics can differ from simple Unicode code-point length. When a draft is near a hard limit, validate against the platform composer or an authoritative platform counter before calling it publishable."
+  ]
+}

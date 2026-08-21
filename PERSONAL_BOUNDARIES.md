@@ -19,6 +19,16 @@ Never commit:
 
 Prefer references, provider/account labels, last-four digits where necessary, timestamps, coverage state, and retrieval instructions.
 
+## Storage classes
+
+Use three distinct storage classes:
+
+1. **ChatGPT Library — personal working data.** Library may hold private personal working artifacts, indexes, drafts, screenshots, exports, and other non-secret data when persistence and retrieval are useful. Treat Library as private account cloud storage, not as a zero-knowledge or secret vault.
+2. **Personal GitHub skill-lib — public procedures only.** GitHub holds skills, schemas, platform rules, validation logic, public-safe examples, and pointers needed to locate authoritative personal state. Do not commit current personal state merely for agent convenience.
+3. **Secret storage — secrets only.** Passwords, API keys, PATs, OAuth/session material, recovery codes, full financial identifiers, government identifiers, and equivalent high-impact credentials or identity material stay outside both the public repository and ordinary Library working corpora. Use the provider's protected credential surface or dedicated encrypted secret storage.
+
+When a Library artifact is the authoritative working corpus, GitHub should describe its schema and retrieval/update procedure rather than duplicate its contents. Stable file IDs, provider IDs, timestamps, and provenance are preferred over copied private bodies.
+
 ## Truth and state
 
 - Distinguish observed state from inferred state.

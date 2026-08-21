@@ -21,7 +21,7 @@ This repository is public. Do not store secrets or personal state in this reposi
 | `files` | Personal file custody, Drive/Library organization, naming, provenance, duplicates, and retrieval. |
 | `finances` | Personal accounts, cash flow, bills, subscriptions, liabilities, holdings, and financial-data coverage limits. |
 | `accounts` | Account inventory, subscriptions, authentication state, recovery paths, permissions, and closure/reconnection workflows. |
-| `social-media` | Post inventory, drafts, published-state separation, social archive, cross-platform reuse, and provenance. |
+| `social-media` | Indexed post database maintenance, drafts vs published state, exact-text/provenance recovery, platform character/format constraints, social archive, and cross-platform reuse. |
 | `devices` | Android/Termux/device hygiene, storage, app inventory, permissions, updates, backups, and non-destructive debloat. |
 | `personal-admin` | Taxes, benefits, insurance, legal/civic paperwork, official deadlines, receipts, and administrative evidence. |
 | `personal-github` | Personal repositories, issues, PRs, profile surfaces, and separation from organization authority. |
@@ -35,6 +35,11 @@ python tools/check_skills.py
 ```
 
 The checker verifies that every registered skill exists, has a concrete trigger, names its sources of truth, states boundaries, defines validation, and preserves `hmmm`.
+
+For `social-media`, the public-safe operational references live beside the skill:
+
+- `social-media/index_schema.json` — stable post-index fields, status/recovery semantics, ID allocation, append workflow, FTS/export verification.
+- `social-media/platform_rules.json` — timestamped X/LinkedIn publishing constraints and source links; live platform state overrides stale cached rules.
 
 ## hmmm
 
